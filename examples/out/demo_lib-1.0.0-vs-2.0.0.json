@@ -1,0 +1,130 @@
+{
+  "a": {
+    "wheel": "examples/in/demo_lib-1.0.0-py3-none-any.whl",
+    "version": "1.0.0",
+    "packages": [
+      "demo_lib"
+    ],
+    "symbols": [
+      {
+        "symbol": "demo_lib",
+        "kind": "package",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.classify",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.format_size",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.helper",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.parse_version",
+        "kind": "function",
+        "detail": ""
+      }
+    ]
+  },
+  "b": {
+    "wheel": "examples/in/demo_lib-2.0.0-py3-none-any.whl",
+    "version": "2.0.0",
+    "packages": [
+      "demo_lib"
+    ],
+    "symbols": [
+      {
+        "symbol": "demo_lib",
+        "kind": "package",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.classify",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.format_size",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "demo_lib.parse_version",
+        "kind": "function",
+        "detail": ""
+      }
+    ]
+  },
+  "summary": {
+    "symbols_a": 5,
+    "symbols_b": 4,
+    "calls_a": 6,
+    "calls_b": 6,
+    "drifts": 3,
+    "by_kind": {
+      "symbol_removed": 1,
+      "outcome_kind": 2
+    },
+    "by_severity": {
+      "error": 3
+    }
+  },
+  "drifts": [
+    {
+      "symbol": "demo_lib.helper",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import demo_lib as m; m.helper(*())\""
+    },
+    {
+      "symbol": "demo_lib.parse_version",
+      "kind": "outcome_kind",
+      "severity": "error",
+      "call": "demo_lib.parse_version(*[\"hello\"])",
+      "a": {
+        "kind": "ok",
+        "type": "str",
+        "value": "hello.0"
+      },
+      "b": {
+        "kind": "error",
+        "type": "ValueError",
+        "value": "invalid literal for int() with base 10: 'hello'"
+      },
+      "minimal_repro": "python3 -c \"import demo_lib as m; m.parse_version(*[\"hello\"])\""
+    },
+    {
+      "symbol": "demo_lib.parse_version",
+      "kind": "outcome_kind",
+      "severity": "error",
+      "call": "demo_lib.parse_version(*[\"not-a-version\"])",
+      "a": {
+        "kind": "ok",
+        "type": "str",
+        "value": "not-a-version.0"
+      },
+      "b": {
+        "kind": "error",
+        "type": "ValueError",
+        "value": "invalid literal for int() with base 10: 'not-a-version'"
+      },
+      "minimal_repro": "python3 -c \"import demo_lib as m; m.parse_version(*[\"not-a-version\"])\""
+    }
+  ],
+  "tool": "wheelpair-diff",
+  "tool_version": "1.0.0"
+}

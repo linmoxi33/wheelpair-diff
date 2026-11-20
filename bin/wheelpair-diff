@@ -1,0 +1,394 @@
+#!/usr/bin/env python3
+"""wheelpair-diff: compare the *runtime* behaviour of two wheels of one package.
+
+No installation, no venv, no network: each wheel is unzipped into a temp dir and
+probed in its own fresh interpreter, then the two outcome sets are compared.
+
+Exit codes: 0 = no drift, 1 = drift found, 2 = usage / input error.
+"""
+
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+VERSION = "1.0.0"
+
+# ---------------------------------------------------------------- generation
+
+STR_HINTS = (
+    ("url", "https://example.com/a"),
+    ("version", "1.0.0"),
+    ("spec", "==1.0"),
+    ("requirement", "requests>=2.0"),
+    ("marker", "python_version >= '3.8'"),
+    ("python", "3.8"),
+    ("name", "demo"),
+    ("text", "hello"),
+    ("sep", "-"),
+)
+
+
+def sample_for(name, ann):
+    low = name.lower()
+    for key, value in STR_HINTS:
+        if key in low:
+            return value
+    ann_low = (ann or "").lower()
+    if "bool" in ann_low:
+        return False
+    if "int" in ann_low:
+        return 1
+    if "float" in ann_low:
+        return 1.0
+    if "bytes" in ann_low:
+        return b"x"
+    if "dict" in ann_low:
+        return {}
+    if "list" in ann_low or "tuple" in ann_low or "sequence" in ann_low:
+        return []
+    return "abc"
+
+
+def arg_key(args):
+    try:
+        return json.dumps(list(args), sort_keys=True, default=str)
+    except Exception:
+        return repr(args)
+
+
+# ------------------------------------------------------------------- probe
+
+PROBE = r"""
+import importlib, inspect, json, os, sys, traceback
+
+root, outpath, max_calls = sys.argv[1], sys.argv[2], int(sys.argv[3])
+sys.path.insert(0, root)
+recs, symbols = [], []
+
+def norm(s):
+    s = str(s)
+    s = s.replace(root, "<wheel>")
+    s = __import__("re").sub(r"0x[0-9a-fA-F]+", "0xADDR", s)
+    s = __import__("re").sub(r" @ \\d+", " @ ADDR", s)
+    return s[:400]
+
+def toplevel(root):
+    names = []
+    for d in sorted(os.listdir(root)):
+        p = os.path.join(root, d)
+        if not os.path.isdir(p) or d.endswith(".dist-info") or d.endswith(".data"):
+            continue
+        if os.path.exists(os.path.join(p, "__init__.py")):
+            names.append(d)
+    return names
+
+def modules_of(pkg):
+    mods = [pkg.__name__]
+    base = os.path.dirname(pkg.__file__)
+    for fn in sorted(os.listdir(base)):
+        if fn.endswith(".py") and fn != "__init__.py" and not fn.startswith("_"):
+            mods.append(pkg.__name__ + "." + fn[:-3])
+    return mods
+
+def gen(mod, fn):
+    sig = inspect.signature(fn)
+    out = []
+    named = {}
+    for pname, p in list(sig.parameters.items())[:3]:
+        if p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD):
+            continue
+        if p.default is not p.empty:
+            if isinstance(p.default, (str, int, float, bool, type(None))):
+                named[pname] = p.default
+            continue
+        named[pname] = sample_for(pname, getattr(p.annotation, "__name__", str(p.annotation)))
+    if named:
+        out.append(tuple(named.values()))
+        first = named[list(named)[0]]
+        if isinstance(first, str):
+            alt = dict(named)
+            alt[list(named)[0]] = "not-a-version"
+            out.append(tuple(alt.values()))
+    for pname, p in list(sig.parameters.items())[:1]:
+        if p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD):
+            continue
+        if p.default is p.empty and pname not in named:
+            out.append((sample_for(pname, ""),))
+    return out
+
+def record(symbol, args, thunk):
+    kind, rtype, rval = "ok", "", ""
+    try:
+        val = thunk()
+        rtype = type(val).__name__
+        rval = norm(val)
+    except BaseException as e:
+        kind, rtype, rval = "error", type(e).__name__, norm(e)
+    recs.append({"symbol": symbol, "args": arg_key(args), "kind": kind,
+                 "type": rtype, "value": rval})
+
+budget = max_calls
+for top in toplevel(root):
+    try:
+        pkg = importlib.import_module(top)
+    except BaseException as e:
+        symbols.append({"symbol": top, "kind": "import-error", "detail": norm(e)})
+        continue
+    symbols.append({"symbol": top, "kind": "package", "detail": ""})
+    for mname in modules_of(pkg):
+        try:
+            mod = importlib.import_module(mname)
+        except BaseException:
+            continue
+        public = set(getattr(mod, "__all__", None) or ())
+        for name in sorted(dir(mod)):
+            if name.startswith("_"):
+                continue
+            obj = getattr(mod, name)
+            symbol = mname + "." + name
+            # only symbols this module defines (or explicitly exports): re-exported
+            # private helpers of other modules are not part of the public surface.
+            if getattr(obj, "__module__", None) != mname and name not in public:
+                continue
+            if inspect.isfunction(obj):
+                symbols.append({"symbol": symbol, "kind": "function", "detail": ""})
+                for args in gen(mod, obj):
+                    if budget <= 0:
+                        break
+                    budget -= 1
+                    record(symbol, args, lambda o=obj, a=args: o(*a))
+            elif inspect.isclass(obj):
+                symbols.append({"symbol": symbol, "kind": "class", "detail": ""})
+                try:
+                    inst = obj()
+                except BaseException:
+                    continue
+                for m in sorted(dir(inst)):
+                    if m.startswith("_"):
+                        continue
+                    try:
+                        attr = getattr(inst, m)
+                    except BaseException:
+                        continue
+                    if not callable(attr):
+                        continue
+                    msym = symbol + "." + m
+                    symbols.append({"symbol": msym, "kind": "method", "detail": ""})
+                    try:
+                        sig = inspect.signature(attr)
+                    except BaseException:
+                        continue
+                    for args in gen(mod, attr):
+                        if budget <= 0:
+                            break
+                        budget -= 1
+                        record(msym, args, lambda o=attr, a=args: o(*a))
+            if budget <= 0:
+                break
+        if budget <= 0:
+            break
+
+with open(outpath, "w", encoding="utf-8") as fh:
+    fh.write(json.dumps({"symbols": symbols, "records": recs}) + "\n")
+"""
+
+
+def wheel_meta(path):
+    """Return (version, package_names) read from the wheel's dist-info."""
+    version, names = "", []
+    try:
+        with zipfile.ZipFile(path) as zf:
+            bad = zf.testzip()
+            if bad is not None:
+                raise ValueError("corrupt member: %s" % bad)
+            for n in zf.namelist():
+                if n.endswith(".dist-info/top_level.txt"):
+                    names = [x.strip() for x in zf.read(n).decode("utf-8").splitlines() if x.strip()]
+                if n.endswith(".dist-info/METADATA") and not version:
+                    for line in zf.read(n).decode("utf-8", "replace").splitlines():
+                        if line.startswith("Version:"):
+                            version = line.split(":", 1)[1].strip()
+                            break
+    except (zipfile.BadZipFile, OSError) as exc:
+        raise SystemExit2("not a readable wheel: %s (%s)" % (path, exc))
+    return version, names
+
+
+class SystemExit2(Exception):
+    pass
+
+
+def probe(wheel, max_calls, timeout):
+    version, names = wheel_meta(wheel)
+    tmp = tempfile.mkdtemp(prefix="wpair-")
+    try:
+        with zipfile.ZipFile(wheel) as zf:
+            zf.extractall(tmp)
+        out = os.path.join(tmp, "_probe.json")
+        cmd = [sys.executable, os.path.abspath(__file__), "__probe", tmp, out, str(max_calls), wheel]
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        if proc.returncode != 0 or not os.path.exists(out):
+            raise SystemExit2("probe failed for %s: %s" % (wheel, (proc.stderr or "")[-300:]))
+        with open(out, encoding="utf-8") as fh:
+            data = json.load(fh)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return {"wheel": wheel, "version": version, "packages": names, **data}
+
+
+# ------------------------------------------------------------------ compare
+
+def classify(a, b):
+    if a["kind"] != b["kind"]:
+        return "outcome_kind", "error"
+    if a["kind"] == "error":
+        if a["type"] != b["type"]:
+            return "exception_type", "error"
+        if a["value"] != b["value"]:
+            return "error_message", "warning"
+        return None
+    if a["type"] != b["type"]:
+        return "return_type", "error"
+    if a["value"] != b["value"]:
+        return "return_value", "warning"
+    return None
+
+
+def repro(symbol, args_json):
+    return "python3 -c \"import %s as m; m.%s(*%s)\"" % (
+        symbol.rsplit(".", 1)[0], symbol.rsplit(".", 1)[1], args_json)
+
+
+def diff(a, b):
+    sym_a = {s["symbol"] for s in a["symbols"]}
+    sym_b = {s["symbol"] for s in b["symbols"]}
+    key_a = {(r["symbol"], r["args"]): r for r in a["records"]}
+    key_b = {(r["symbol"], r["args"]): r for r in b["records"]}
+    drifts, seen = [], set()
+
+    for sym in sorted(sym_a - sym_b):
+        drifts.append({"symbol": sym, "kind": "symbol_removed", "severity": "error",
+                       "call": None, "a": {"kind": "present"}, "b": {"kind": "absent"},
+                       "minimal_repro": repro(sym, "()")})
+        seen.add(sym)
+    for sym in sorted(sym_b - sym_a):
+        drifts.append({"symbol": sym, "kind": "symbol_added", "severity": "warning",
+                       "call": None, "a": {"kind": "absent"}, "b": {"kind": "present"},
+                       "minimal_repro": repro(sym, "()")})
+        seen.add(sym)
+
+    for key in sorted(set(key_a) & set(key_b)):
+        ra, rb = key_a[key], key_b[key]
+        res = classify(ra, rb)
+        if not res:
+            continue
+        kind, sev = res
+        drifts.append({"symbol": ra["symbol"], "kind": kind, "severity": sev,
+                       "call": "%s(*%s)" % (ra["symbol"], ra["args"]),
+                       "a": {"kind": ra["kind"], "type": ra["type"], "value": ra["value"]},
+                       "b": {"kind": rb["kind"], "type": rb["type"], "value": rb["value"]},
+                       "minimal_repro": repro(ra["symbol"], ra["args"])})
+    by_kind, by_sev = {}, {}
+    for d in drifts:
+        by_kind[d["kind"]] = by_kind.get(d["kind"], 0) + 1
+        by_sev[d["severity"]] = by_sev.get(d["severity"], 0) + 1
+    return {
+        "a": {k: v for k, v in a.items() if k != "records"},
+        "b": {k: v for k, v in b.items() if k != "records"},
+        "summary": {
+            "symbols_a": len(a["symbols"]), "symbols_b": len(b["symbols"]),
+            "calls_a": len(a["records"]), "calls_b": len(b["records"]),
+            "drifts": len(drifts), "by_kind": by_kind, "by_severity": by_sev,
+        },
+        "drifts": drifts,
+    }
+
+
+# --------------------------------------------------------------------- CLI
+
+def die(msg):
+    sys.stderr.write("wheelpair-diff: %s\n" % msg)
+    return 2
+
+
+def render(res):
+    s = res["summary"]
+    out = []
+    out.append("A: %s  (%s, %d symbols, %d calls)" % (
+        res["a"]["wheel"], res["a"]["version"] or "?", s["symbols_a"], s["calls_a"]))
+    out.append("B: %s  (%s, %d symbols, %d calls)" % (
+        res["b"]["wheel"], res["b"]["version"] or "?", s["symbols_b"], s["calls_b"]))
+    out.append("drift: %d  (%s)" % (s["drifts"], ", ".join(
+        "%s=%d" % (k, v) for k, v in sorted(s["by_kind"].items())) or "none"))
+    for d in res["drifts"]:
+        out.append("")
+        out.append("[%s/%s] %s" % (d["severity"], d["kind"], d["symbol"]))
+        out.append("  A: %s" % json.dumps(d["a"], ensure_ascii=False)[:200])
+        out.append("  B: %s" % json.dumps(d["b"], ensure_ascii=False)[:200])
+        out.append("  repro: %s" % d["minimal_repro"])
+    return "\n".join(out)
+
+
+def main(argv):
+    ap = argparse.ArgumentParser(prog="wheelpair-diff", add_help=True)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    d = sub.add_parser("diff", help="compare two wheels")
+    d.add_argument("a")
+    d.add_argument("b")
+    d.add_argument("--json", action="store_true")
+    d.add_argument("--max-calls", type=int, default=400)
+    d.add_argument("--timeout", type=int, default=120)
+    p = sub.add_parser("probe", help="dump one wheel's probe result")
+    p.add_argument("wheel")
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--max-calls", type=int, default=400)
+    p.add_argument("--timeout", type=int, default=120)
+    q = sub.add_parser("__probe")
+    q.add_argument("root")
+    q.add_argument("out")
+    q.add_argument("calls")
+    q.add_argument("wheel")
+    args = ap.parse_args(argv)
+
+    if args.cmd == "__probe":
+        code = compile(PROBE, "<probe>", "exec")
+        sys.argv = ["probe", args.root, args.out, args.calls]
+        exec(code, {"__name__": "__probe__", "sample_for": sample_for, "arg_key": arg_key})
+        return 0
+
+    for path in ([args.wheel] if args.cmd == "probe" else [args.a, args.b]):
+        if not os.path.isfile(path):
+            return die("no such file: %s" % path)
+
+    try:
+        if args.cmd == "probe":
+            res = probe(args.wheel, args.max_calls, args.timeout)
+            res["tool"] = "wheelpair-diff"
+            res["tool_version"] = VERSION
+            print(json.dumps(res, indent=2, ensure_ascii=False) if args.json else
+                  "%s: %s, %d symbols, %d calls" % (args.wheel, res["version"],
+                                                    len(res["symbols"]), len(res["records"])))
+            return 0
+        a = probe(args.a, args.max_calls, args.timeout)
+        b = probe(args.b, args.max_calls, args.timeout)
+        res = diff(a, b)
+        res["tool"] = "wheelpair-diff"
+        res["tool_version"] = VERSION
+        print(json.dumps(res, indent=2, ensure_ascii=False) if args.json else render(res))
+        return 1 if res["summary"]["drifts"] else 0
+    except SystemExit2 as exc:
+        return die(str(exc))
+    except subprocess.TimeoutExpired:
+        return die("probe timed out")
+    except KeyboardInterrupt:
+        return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

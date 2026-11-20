@@ -1,0 +1,1440 @@
+{
+  "a": {
+    "wheel": "/tmp/wp/packaging-20.9-py2.py3-none-any.whl",
+    "version": "20.9",
+    "packages": [
+      "packaging"
+    ],
+    "symbols": [
+      {
+        "symbol": "packaging",
+        "kind": "package",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Marker",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Node",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Op",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Undefined",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Value",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Variable",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.default_environment",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.format_full_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.Requirement",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.BaseSpecifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.LegacySpecifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.Specifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet.contains",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet.filter",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.Tag",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.compatible_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.cpython_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.generic_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.glibcVersion",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.interpreter_name",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.interpreter_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.mac_platforms",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.parse_tag",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.sys_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.canonicalize_name",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.canonicalize_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.parse_sdist_filename",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.parse_wheel_filename",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.LegacyVersion",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.Version",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.parse",
+        "kind": "function",
+        "detail": ""
+      }
+    ]
+  },
+  "b": {
+    "wheel": "/tmp/wp/packaging-24.2-py3-none-any.whl",
+    "version": "24.2",
+    "packages": [],
+    "symbols": [
+      {
+        "symbol": "packaging",
+        "kind": "package",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.clear",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.copy",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.fromkeys",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.get",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.items",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.keys",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.pop",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.popitem",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.setdefault",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.update",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Environment.values",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.InvalidMarker.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.Marker",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedComparison.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.UndefinedEnvironmentName.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.default_environment",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.markers.format_full_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.InvalidMetadata",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.Metadata",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.Metadata.from_email",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.Metadata.from_raw",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.clear",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.copy",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.fromkeys",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.get",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.items",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.keys",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.pop",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.popitem",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.setdefault",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.update",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.RawMetadata.values",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.metadata.parse_email",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.InvalidRequirement.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.requirements.Requirement",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.BaseSpecifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.InvalidSpecifier.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.Specifier",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet.contains",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.specifiers.SpecifierSet.filter",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.Tag",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.compatible_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.cpython_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.generic_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.interpreter_name",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.interpreter_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.ios_platforms",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.mac_platforms",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.parse_tag",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.platform_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.tags.sys_tags",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidName",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidName.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidName.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidSdistFilename.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.InvalidWheelFilename.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.canonicalize_name",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.canonicalize_version",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.is_normalized_name",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.parse_sdist_filename",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.utils.parse_wheel_filename",
+        "kind": "function",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion.add_note",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.InvalidVersion.with_traceback",
+        "kind": "method",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.Version",
+        "kind": "class",
+        "detail": ""
+      },
+      {
+        "symbol": "packaging.version.parse",
+        "kind": "function",
+        "detail": ""
+      }
+    ]
+  },
+  "summary": {
+    "symbols_a": 57,
+    "symbols_b": 84,
+    "calls_a": 22,
+    "calls_b": 43,
+    "drifts": 51,
+    "by_kind": {
+      "symbol_removed": 8,
+      "symbol_added": 35,
+      "outcome_kind": 3,
+      "return_value": 1,
+      "error_message": 4
+    },
+    "by_severity": {
+      "error": 11,
+      "warning": 40
+    }
+  },
+  "drifts": [
+    {
+      "symbol": "packaging.markers.Node",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Node(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Op",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Op(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Undefined",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Undefined(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Value",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Value(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Variable",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Variable(*())\""
+    },
+    {
+      "symbol": "packaging.specifiers.LegacySpecifier",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.specifiers as m; m.LegacySpecifier(*())\""
+    },
+    {
+      "symbol": "packaging.tags.glibcVersion",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.tags as m; m.glibcVersion(*())\""
+    },
+    {
+      "symbol": "packaging.version.LegacyVersion",
+      "kind": "symbol_removed",
+      "severity": "error",
+      "call": null,
+      "a": {
+        "kind": "present"
+      },
+      "b": {
+        "kind": "absent"
+      },
+      "minimal_repro": "python3 -c \"import packaging.version as m; m.LegacyVersion(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers as m; m.Environment(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.clear",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.clear(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.copy",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.copy(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.fromkeys",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.fromkeys(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.get",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.get(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.items",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.items(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.keys",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.keys(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.pop",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.pop(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.popitem",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.popitem(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.setdefault",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.setdefault(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.update",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.update(*())\""
+    },
+    {
+      "symbol": "packaging.markers.Environment.values",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.markers.Environment as m; m.values(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.InvalidMetadata",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata as m; m.InvalidMetadata(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.Metadata",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata as m; m.Metadata(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.Metadata.from_email",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.Metadata as m; m.from_email(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.Metadata.from_raw",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.Metadata as m; m.from_raw(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata as m; m.RawMetadata(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.clear",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.clear(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.copy",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.copy(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.fromkeys",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.fromkeys(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.get",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.get(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.items",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.items(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.keys",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.keys(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.pop",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.pop(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.popitem",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.popitem(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.setdefault",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.setdefault(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.update",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.update(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.RawMetadata.values",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata.RawMetadata as m; m.values(*())\""
+    },
+    {
+      "symbol": "packaging.metadata.parse_email",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.metadata as m; m.parse_email(*())\""
+    },
+    {
+      "symbol": "packaging.tags.ios_platforms",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.tags as m; m.ios_platforms(*())\""
+    },
+    {
+      "symbol": "packaging.tags.platform_tags",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.tags as m; m.platform_tags(*())\""
+    },
+    {
+      "symbol": "packaging.utils.InvalidName",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.InvalidName(*())\""
+    },
+    {
+      "symbol": "packaging.utils.InvalidName.add_note",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils.InvalidName as m; m.add_note(*())\""
+    },
+    {
+      "symbol": "packaging.utils.InvalidName.with_traceback",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils.InvalidName as m; m.with_traceback(*())\""
+    },
+    {
+      "symbol": "packaging.utils.is_normalized_name",
+      "kind": "symbol_added",
+      "severity": "warning",
+      "call": null,
+      "a": {
+        "kind": "absent"
+      },
+      "b": {
+        "kind": "present"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.is_normalized_name(*())\""
+    },
+    {
+      "symbol": "packaging.specifiers.SpecifierSet.filter",
+      "kind": "outcome_kind",
+      "severity": "error",
+      "call": "packaging.specifiers.SpecifierSet.filter(*[\"abc\", null])",
+      "a": {
+        "kind": "ok",
+        "type": "list",
+        "value": "[]"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidVersion",
+        "value": "Invalid version: 'a'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.specifiers.SpecifierSet as m; m.filter(*[\"abc\", null])\""
+    },
+    {
+      "symbol": "packaging.specifiers.SpecifierSet.filter",
+      "kind": "outcome_kind",
+      "severity": "error",
+      "call": "packaging.specifiers.SpecifierSet.filter(*[\"not-a-version\", null])",
+      "a": {
+        "kind": "ok",
+        "type": "list",
+        "value": "[]"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidVersion",
+        "value": "Invalid version: 'n'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.specifiers.SpecifierSet as m; m.filter(*[\"not-a-version\", null])\""
+    },
+    {
+      "symbol": "packaging.tags.parse_tag",
+      "kind": "return_value",
+      "severity": "warning",
+      "call": "packaging.tags.parse_tag(*[\"not-a-version\"])",
+      "a": {
+        "kind": "ok",
+        "type": "frozenset",
+        "value": "frozenset({<not-a-version @ 129305607425600>})"
+      },
+      "b": {
+        "kind": "ok",
+        "type": "frozenset",
+        "value": "frozenset({<not-a-version @ 127315968174912>})"
+      },
+      "minimal_repro": "python3 -c \"import packaging.tags as m; m.parse_tag(*[\"not-a-version\"])\""
+    },
+    {
+      "symbol": "packaging.utils.parse_sdist_filename",
+      "kind": "error_message",
+      "severity": "warning",
+      "call": "packaging.utils.parse_sdist_filename(*[\"demo\"])",
+      "a": {
+        "kind": "error",
+        "type": "InvalidSdistFilename",
+        "value": "Invalid sdist filename (extension must be '.tar.gz'): demo"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidSdistFilename",
+        "value": "Invalid sdist filename (extension must be '.tar.gz' or '.zip'): 'demo'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.parse_sdist_filename(*[\"demo\"])\""
+    },
+    {
+      "symbol": "packaging.utils.parse_sdist_filename",
+      "kind": "error_message",
+      "severity": "warning",
+      "call": "packaging.utils.parse_sdist_filename(*[\"not-a-version\"])",
+      "a": {
+        "kind": "error",
+        "type": "InvalidSdistFilename",
+        "value": "Invalid sdist filename (extension must be '.tar.gz'): not-a-version"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidSdistFilename",
+        "value": "Invalid sdist filename (extension must be '.tar.gz' or '.zip'): 'not-a-version'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.parse_sdist_filename(*[\"not-a-version\"])\""
+    },
+    {
+      "symbol": "packaging.utils.parse_wheel_filename",
+      "kind": "error_message",
+      "severity": "warning",
+      "call": "packaging.utils.parse_wheel_filename(*[\"demo\"])",
+      "a": {
+        "kind": "error",
+        "type": "InvalidWheelFilename",
+        "value": "Invalid wheel filename (extension must be '.whl'): demo"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidWheelFilename",
+        "value": "Invalid wheel filename (extension must be '.whl'): 'demo'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.parse_wheel_filename(*[\"demo\"])\""
+    },
+    {
+      "symbol": "packaging.utils.parse_wheel_filename",
+      "kind": "error_message",
+      "severity": "warning",
+      "call": "packaging.utils.parse_wheel_filename(*[\"not-a-version\"])",
+      "a": {
+        "kind": "error",
+        "type": "InvalidWheelFilename",
+        "value": "Invalid wheel filename (extension must be '.whl'): not-a-version"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidWheelFilename",
+        "value": "Invalid wheel filename (extension must be '.whl'): 'not-a-version'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.utils as m; m.parse_wheel_filename(*[\"not-a-version\"])\""
+    },
+    {
+      "symbol": "packaging.version.parse",
+      "kind": "outcome_kind",
+      "severity": "error",
+      "call": "packaging.version.parse(*[\"not-a-version\"])",
+      "a": {
+        "kind": "ok",
+        "type": "LegacyVersion",
+        "value": "not-a-version"
+      },
+      "b": {
+        "kind": "error",
+        "type": "InvalidVersion",
+        "value": "Invalid version: 'not-a-version'"
+      },
+      "minimal_repro": "python3 -c \"import packaging.version as m; m.parse(*[\"not-a-version\"])\""
+    }
+  ],
+  "tool": "wheelpair-diff",
+  "tool_version": "1.0.0"
+}
